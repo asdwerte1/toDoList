@@ -1,0 +1,32 @@
+$white: #FFF5D9;
+$black: #000000;
+$grey: #454545;
+$green: #6F7C12;
+$blue: #48A9A6;
+
+body {
+    background-color: $grey;
+}
+
+h1 {
+    color: $blue;
+}
+
+#enter-new-item {
+    border: solid medium $green;
+    background-color: $white;
+    color: $blue; 
+    padding-left: 35px;
+    margin: auto;
+    border-radius: 30px 30px 5px 5px;
+}
+
+#submit-btn {
+    background-color: $blue;
+    border: solid thin $black;
+    color: #ffffff;
+}
+
+#submit-btn:hover {
+    background-color: $green;
+}

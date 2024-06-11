@@ -1,0 +1,28 @@
+body {
+  background-color: #454545;
+}
+
+h1 {
+  color: #48A9A6;
+}
+
+#enter-new-item {
+  border: solid medium #6F7C12;
+  background-color: #FFF5D9;
+  color: #48A9A6;
+  padding-left: 35px;
+  margin: auto;
+  border-radius: 30px 30px 5px 5px;
+}
+
+#submit-btn {
+  background-color: #48A9A6;
+  border: solid thin #000000;
+  color: #ffffff;
+}
+
+#submit-btn:hover {
+  background-color: #6F7C12;
+}
+
+/*# sourceMappingURL=sass.css.map */
