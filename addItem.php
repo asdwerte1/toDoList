@@ -21,14 +21,13 @@ $sql = "INSERT INTO task_list (task_title, task_description, priority, complete)
 $stmt = $con->prepare($sql);
 
 if (!$stmt) {
-    echo "ERROR PREPARING STATEMENT: " . $con->error;
+    die("ERROR PREPARING STATEMENT: " . $con->error);
 } else {
     $stmt->bind_param("sss", $taskName, $taskDesc, $priority);
 
     if ($stmt->execute()) {
-        echo "task added successfully";
     } else {
-        echo "Error adding task: " . $stmt->error;
+        die("Error adding task: " . $stmt->error);
     }
 
     $stmt->close();

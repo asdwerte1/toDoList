@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +14,8 @@
   <title>To Do List</title>
 </head>
 
-<body class="container-sm" onload="sendForm()">
+<body class="container-sm">
+<body class="container-sm">
   <div class="container-sm pt-2">
     <div class="row">
       <div class="col-sm-4" style="align-content: center">
@@ -23,7 +23,7 @@
       </div>
       <div class="col-sm-8" id="enter-new-item">
         <h2 class="kode-mono">Add new item</h2>
-        <form action="addItem.php" method="post" class="pb-2">
+        <form action="addItem.php" method="post" class="pb-2" id="taskForm">
           <div class="row">
             <div class="col-sm-2 ps-0 pe-0">
               <label for="title" class="form-label">Title:</label>
@@ -65,5 +65,4 @@
     <div class="container-sm" id="to-do-items"></div>
   </div>
 </body>
-
 </html>

@@ -1,26 +1,64 @@
-function sendForm() {
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('taskForm');
 
-        const formData = new FormData(form); // Collect form data for sending
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-        fetch("addItem.php", {
-            method: "POST",
+        // Collect form data
+        const formData = new FormData(form);
+
+        // AJAX request using fetch
+        fetch('addItem.php', {
+            method: 'POST',
             body: formData
-        });
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
 
-        form.reset();
+            // Reset the form after successful submission
+            form.reset();
+        })
+        .catch(error => {
+            // Handle error
+            console.error('Error adding task:', error);
+        });
     });
-}
+});
 
 // NOTE - Use database task_id for task element ids do all unique and accessible in code uniquely
+/*
+function getTasks() {
+    console.log("FUNCTION CALLED");
+    const xhhtp = new XMLHttpRequest();
+    xhhtp.onload = function() {
+        const response = JSON.parse(this.response);
+        console.log(response);
+    }
 
-// Function to create task elements on page by fetching from database
-    // use ajax to access database (maybe also use php)
-    // loop through database and access all incomplete tasks
-    // fetch data into JS
+    xhhtp.open("GET", "getItems.php", true);
+    xhhtp.send();
+}
+*/
+//function init() {
+    // Used to call two above functions on the page loading event
 
+//}
+/*
+function sendFormData(event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch("addItem.php", {
+        method: "POST",
+        body: formData
+    });
+}*/
 // Function to create a task element - inputs task data
 
 
