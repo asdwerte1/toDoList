@@ -71,16 +71,33 @@ function makeTaskBanners(taskArray) {
 
         const newHeader = document.createElement("h2");
         const newText = document.createElement("p");
+        const newPriority = document.createElement("p");
 
         const taskTitle = taskObject.title;
         const taskDescription = taskObject.description;
+        const taskPriority = taskObject.priority;
 
         newHeader.innerHTML = taskTitle;
         newText.innerHTML = taskDescription;
 
+        switch (taskPriority) {
+            case "l":
+                newPriority.innerHTML = "Low";
+                break;
+        
+            case "m":
+                newPriority.innerHTML = "Medium";
+                break;
+
+            case "h":
+                newPriority.innerHTML = "High";
+                break;
+                
+        }
+
         newTask.appendChild(newHeader);
-        console.log("reached");
         newTask.appendChild(newText);
+        newTask.appendChild(newPriority);
 
         if (index + 1 == taskArray.length) {
             newTask.style.borderBottomLeftRadius = "30px";
@@ -94,3 +111,5 @@ function makeTaskBanners(taskArray) {
 // Function to check number of tasks on page --> change form state disabled/not disabled elements if = 10
 
 // Function to allow tasks to be marked complete - remove from page and change in database
+
+// Add ability to sort tasks in different ways
