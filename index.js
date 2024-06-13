@@ -67,7 +67,7 @@ function makeTaskBanners(taskArray) {
 
         newTask.setAttribute("id", taskObject.id);
 
-        newTask.className = "task-container container-sm mt-3";
+        newTask.className = "task-container container-sm mt-3 pt-2";
 
         const newHeader = document.createElement("h2");
         const newText = document.createElement("p");
