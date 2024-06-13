@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // NOTE - Use database task_id for task element ids do all unique and accessible in code uniquely
-/*
+
 function getTasks() {
     console.log("FUNCTION CALLED");
     const xhhtp = new XMLHttpRequest();
@@ -43,7 +43,7 @@ function getTasks() {
     xhhtp.open("GET", "getItems.php", true);
     xhhtp.send();
 }
-*/
+
 //function init() {
     // Used to call two above functions on the page loading event
 
