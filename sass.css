@@ -25,4 +25,13 @@ h1 {
   background-color: #6F7C12;
 }
 
+.task-container {
+  border: solid medium #6F7C12;
+  background-color: #FFF5D9;
+  color: #48A9A6;
+  padding-left: 35px;
+  margin: auto;
+  border-radius: 5px;
+}
+
 /*# sourceMappingURL=sass.css.map */

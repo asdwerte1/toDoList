@@ -1,7 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+// TODO - Find a way to remove escape character (\) from text (e.g. from typing a ' into the form)
+
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('taskForm');
 
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
 
         // Collect form data
@@ -12,21 +14,24 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(data => {
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
 
-            // Reset the form after successful submission
-            form.reset();
-        })
-        .catch(error => {
-            // Handle error
-            console.error('Error adding task:', error);
-        });
+                // Reset the form after successful submission
+                form.reset();
+
+                // Call the getTasks method to update list
+                getTasks();
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error adding task:', error);
+            });
     });
 });
 
@@ -35,32 +40,56 @@ document.addEventListener('DOMContentLoaded', function() {
 function getTasks() {
     console.log("FUNCTION CALLED");
     const xhhtp = new XMLHttpRequest();
-    xhhtp.onload = function() {
-        const response = JSON.parse(this.response);
-        console.log(response);
+    xhhtp.onload = function () {
+        const response = JSON.parse(this.responseText);
+
+        makeTaskBanners(response);
     }
 
     xhhtp.open("GET", "getItems.php", true);
     xhhtp.send();
 }
 
-//function init() {
-    // Used to call two above functions on the page loading event
+function makeTaskBanners(taskArray) {
 
-//}
-/*
-function sendFormData(event) {
-    event.preventDefault();
+    console.log("Second function called");
+    const container = document.getElementById("to-do-items");
 
-    const formData = new FormData(form);
+    // Empty all tasks first to avoid duplication
+    container.innerHTML = "";
 
-    fetch("addItem.php", {
-        method: "POST",
-        body: formData
-    });
-}*/
-// Function to create a task element - inputs task data
+    for (let index = 0; index < taskArray.length; index++) {
 
+        const taskObject = taskArray[index];
+
+        // Build HTML element for task info and add to container
+        const newTask = document.createElement("div");
+
+        newTask.setAttribute("id", taskObject.id);
+
+        newTask.className = "task-container container-sm mt-3";
+
+        const newHeader = document.createElement("h2");
+        const newText = document.createElement("p");
+
+        const taskTitle = taskObject.title;
+        const taskDescription = taskObject.description;
+
+        newHeader.innerHTML = taskTitle;
+        newText.innerHTML = taskDescription;
+
+        newTask.appendChild(newHeader);
+        console.log("reached");
+        newTask.appendChild(newText);
+
+        if (index + 1 == taskArray.length) {
+            newTask.style.borderBottomLeftRadius = "30px";
+            newTask.style.borderBottomRightRadius = "30px";
+        }
+
+        container.appendChild(newTask);
+    }
+}
 
 // Function to check number of tasks on page --> change form state disabled/not disabled elements if = 10
 

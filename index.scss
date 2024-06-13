@@ -30,3 +30,12 @@ h1 {
 #submit-btn:hover {
     background-color: $green;
 }
+
+.task-container {
+    border: solid medium $green;
+    background-color: $white;
+    color: $blue;
+    padding-left: 35px;
+    margin: auto;
+    border-radius: 5px;
+}

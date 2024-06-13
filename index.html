@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,54 +16,58 @@
 </head>
 
 <body class="container-sm" onload="getTasks()">
-<body class="container-sm">
-  <div class="container-sm pt-2">
-    <div class="row">
-      <div class="col-sm-4" style="align-content: center">
-        <h1 class="kode-mono-bold">To Do List</h1>
+
+  <body class="container-sm">
+    <div class="container-sm pt-2">
+      <div class="row">
+        <div class="col-sm-4" style="align-content: center">
+          <h1 class="kode-mono-bold">To Do List</h1>
+        </div>
+        <div class="col-sm-8" id="enter-new-item">
+          <h2 class="kode-mono">Add new item</h2>
+          <form action="addItem.php" method="post" class="pb-2" id="taskForm">
+            <div class="row">
+              <div class="col-sm-2 ps-0 pe-0">
+                <label for="title" class="form-label">Title:</label>
+              </div>
+              <div class="col-sm ps-0">
+                <input type="text" name="title" id="title" placeholder="Title of task" class="form-control" required />
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-sm-2 ps-0 pe-0">
+                <label for="description">Description:</label>
+              </div>
+              <div class="col-sm ps-0">
+                <textarea class="form-control" id="description" name="description"
+                  placeholder="Enter a short description of the task..." required></textarea>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-sm-2 ps-0 pe-0">
+                <p>Priority:</p>
+              </div>
+              <div class="col-sm-3 form-check">
+                <input type="radio" class="form-check-input" id="low" name="priority" value="l" />
+                <label for="low" class="form-check-label">Low</label>
+              </div>
+              <div class="col-sm-3 form-check">
+                <input type="radio" class="form-check-input" id="med" name="priority" value="m" checked />
+                <label for="med" class="form-check-label">Medium</label>
+              </div>
+              <div class="col-sm-3 form-check">
+                <input type="radio" class="form-check-input" id="high" name="priority" value="h" />
+                <label for="high" class="form-check-label">High</label>
+              </div>
+            </div>
+            <button type="submit" class="btn" id="submit-btn">Add</button>
+          </form>
+        </div>
       </div>
-      <div class="col-sm-8" id="enter-new-item">
-        <h2 class="kode-mono">Add new item</h2>
-        <form action="addItem.php" method="post" class="pb-2" id="taskForm">
-          <div class="row">
-            <div class="col-sm-2 ps-0 pe-0">
-              <label for="title" class="form-label">Title:</label>
-            </div>
-            <div class="col-sm ps-0">
-              <input type="text" name="title" id="title" placeholder="Title of task" class="form-control" required />
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-sm-2 ps-0 pe-0">
-              <label for="description">Description:</label>
-            </div>
-            <div class="col-sm ps-0">
-              <textarea class="form-control" id="description" name="description"
-                placeholder="Enter a short description of the task..." required></textarea>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-sm-2 ps-0 pe-0">
-              <p>Priority:</p>
-            </div>
-            <div class="col-sm-3 form-check">
-              <input type="radio" class="form-check-input" id="low" name="priority" value="l" />
-              <label for="low" class="form-check-label">Low</label>
-            </div>
-            <div class="col-sm-3 form-check">
-              <input type="radio" class="form-check-input" id="med" name="priority" value="m" checked/>
-              <label for="med" class="form-check-label">Medium</label>
-            </div>
-            <div class="col-sm-3 form-check">
-              <input type="radio" class="form-check-input" id="high" name="priority" value="h" />
-              <label for="high" class="form-check-label">High</label>
-            </div>
-          </div>
-          <button type="submit" class="btn" id="submit-btn">Add</button>
-        </form>
+      <div class="row">
+        <div class="container-sm pe-0 ps-0" id="to-do-items"></div>
       </div>
     </div>
-    <div class="container-sm" id="to-do-items"></div>
-  </div>
-</body>
+  </body>
+
 </html>
