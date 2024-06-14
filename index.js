@@ -70,8 +70,11 @@ function makeTaskBanners(taskArray) {
         newTask.className = "task-container container-sm mt-3 pt-2";
 
         const newHeader = document.createElement("h2");
+        newHeader.setAttribute("class", "kode-mono")
         const newText = document.createElement("p");
+        newText.style.color = "black";
         const newPriority = document.createElement("p");
+        newPriority.style.fontWeight = "bold";
 
         const taskTitle = taskObject.title;
         const taskDescription = taskObject.description;
@@ -83,14 +86,17 @@ function makeTaskBanners(taskArray) {
         switch (taskPriority) {
             case "l":
                 newPriority.innerHTML = "Low";
+                newPriority.style.color = "green";
                 break;
         
             case "m":
                 newPriority.innerHTML = "Medium";
+                newPriority.style.color = "orange";
                 break;
 
             case "h":
                 newPriority.innerHTML = "High";
+                newPriority.style.color = "red";
                 break;
                 
         }
