@@ -132,8 +132,28 @@ function makeTaskBanners(taskArray) {
 }
 
 function removeTask(id) {
-    console.log("HERE");
-    console.log(id);
+
+    const taskId = id.substr(6);
+    const formData = new FormData();
+    formData.append("id", taskId);
+
+    const task = document.getElementById(taskId);
+    
+    fetch("markComplete.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response not okay");
+        }
+    })
+    .then(data => {
+        task.remove();
+    })
+    .catch(error => {
+        console.error("Error removing task", error);
+    });
 }
 
 // Function to check number of tasks on page --> change form state disabled/not disabled elements if = 10
