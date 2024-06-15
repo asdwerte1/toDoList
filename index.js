@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // NOTE - Use database task_id for task element ids do all unique and accessible in code uniquely
 
 function getTasks() {
-    console.log("FUNCTION CALLED");
     const xhhtp = new XMLHttpRequest();
     xhhtp.onload = function () {
         const response = JSON.parse(this.responseText);
@@ -52,7 +51,6 @@ function getTasks() {
 
 function makeTaskBanners(taskArray) {
 
-    console.log("Second function called");
     const container = document.getElementById("to-do-items");
 
     // Empty all tasks first to avoid duplication
@@ -64,8 +62,14 @@ function makeTaskBanners(taskArray) {
 
         // Build HTML element for task info and add to container
         const newTask = document.createElement("div");
+        const row = document.createElement("div");
+        const col1 = document.createElement("div");
+        const col2 = document.createElement("div");
 
         newTask.setAttribute("id", taskObject.id);
+        row.setAttribute("class", "row");
+        col1.setAttribute("class", "col-sm");
+        col2.setAttribute("class", "col-sm");
 
         newTask.className = "task-container container-sm mt-3 pt-2";
 
@@ -101,9 +105,22 @@ function makeTaskBanners(taskArray) {
                 
         }
 
+        const completeBtn = document.createElement("button");
+        completeBtn.innerHTML = "Mark Complete"
+        completeBtn.setAttribute("type", "submit");
+        completeBtn.setAttribute("class", "btn submit-btn mb-2");
+        completeBtn.setAttribute("id", "button"+taskObject.id);
+        completeBtn.addEventListener("click", () => removeTask(completeBtn.id));
+
+        col1.appendChild(newText);
+        col1.appendChild(newPriority);
+        col2.appendChild(completeBtn);
+        row.appendChild(col1);
+        row.appendChild(col2);
         newTask.appendChild(newHeader);
-        newTask.appendChild(newText);
-        newTask.appendChild(newPriority);
+        newTask.appendChild(row);
+
+        col2.style.textAlign = "end";
 
         if (index + 1 == taskArray.length) {
             newTask.style.borderBottomLeftRadius = "30px";
@@ -112,6 +129,11 @@ function makeTaskBanners(taskArray) {
 
         container.appendChild(newTask);
     }
+}
+
+function removeTask(id) {
+    console.log("HERE");
+    console.log(id);
 }
 
 // Function to check number of tasks on page --> change form state disabled/not disabled elements if = 10
