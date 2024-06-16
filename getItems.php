@@ -14,10 +14,10 @@ class dbRow {
     }
 }
 
-$serverName = "localhost";
-$username = "sam";
-$password = "Esepe!ed1";
-$dbName = "Tasks";
+$serverName =;
+$username =;
+$password =;
+$dbName =;
 
 // Connect to server
 $con = new mysqli($serverName, $username, $password, $dbName);
