@@ -43,6 +43,8 @@ function getTasks() {
         const response = JSON.parse(this.responseText);
 
         makeTaskBanners(response);
+        console.log("HERE");
+        checkNumberOfTasks();
     }
 
     xhhtp.open("GET", "getItems.php", true);
@@ -92,7 +94,7 @@ function makeTaskBanners(taskArray) {
                 newPriority.innerHTML = "Low";
                 newPriority.style.color = "green";
                 break;
-        
+
             case "m":
                 newPriority.innerHTML = "Medium";
                 newPriority.style.color = "orange";
@@ -102,14 +104,14 @@ function makeTaskBanners(taskArray) {
                 newPriority.innerHTML = "High";
                 newPriority.style.color = "red";
                 break;
-                
+
         }
 
         const completeBtn = document.createElement("button");
         completeBtn.innerHTML = "Mark Complete"
         completeBtn.setAttribute("type", "submit");
         completeBtn.setAttribute("class", "btn submit-btn mb-2");
-        completeBtn.setAttribute("id", "button"+taskObject.id);
+        completeBtn.setAttribute("id", "button" + taskObject.id);
         completeBtn.addEventListener("click", () => removeTask(completeBtn.id));
 
         col1.appendChild(newText);
@@ -138,26 +140,46 @@ function removeTask(id) {
     formData.append("id", taskId);
 
     const task = document.getElementById(taskId);
-    
+
     fetch("markComplete.php", {
         method: "POST",
         body: formData
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Network response not okay");
-        }
-    })
-    .then(data => {
-        task.remove();
-    })
-    .catch(error => {
-        console.error("Error removing task", error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response not okay");
+            }
+        })
+        .then(data => {
+            task.remove();
+            checkNumberOfTasks();
+        })
+        .catch(error => {
+            console.error("Error removing task", error);
+        });
 }
 
 // Function to check number of tasks on page --> change form state disabled/not disabled elements if = 10
 
-// Function to allow tasks to be marked complete - remove from page and change in database
+function checkNumberOfTasks() {
+    numberOfTasks = document.getElementsByClassName("task-container").length;
 
+    const inputs = document.getElementsByTagName("input");
+    const textarea = document.getElementById("description");
+    const button = document.getElementById("addTaskBtn");
+
+    if (numberOfTasks >= 10) {
+        for (let index = 0; index < inputs.length; index++) {
+            inputs[index].setAttribute("disabled", "disabled");
+        }
+        textarea.setAttribute("disabled", "disabled");
+        button.setAttribute("disabled", "disabled");
+    } else {
+        for (let index = 0; index < inputs.length; index++) {
+            inputs[index].removeAttribute("disabled");
+        }
+        textarea.removeAttribute("disabled");
+        button.removeAttribute("disabled");
+    }
+}
 // Add ability to sort tasks in different ways

@@ -25,7 +25,7 @@
         </div>
         <div class="col-sm-8" id="enter-new-item">
           <h2 class="kode-mono">Add new item</h2>
-          <form action="addItem.php" method="post" class="pb-2" id="taskForm">
+          <form action="addItem.php" method="post" class="pb-2" id="taskForm" disabled>
             <div class="row">
               <div class="col-sm-2 ps-0 pe-0">
                 <label for="title" class="form-label">Title:</label>
@@ -60,7 +60,7 @@
                 <label for="high" class="form-check-label">High</label>
               </div>
             </div>
-            <button type="submit" class="btn submit-btn">Add</button>
+            <button type="submit" class="btn submit-btn" id="addTaskBtn">Add</button>
           </form>
         </div>
       </div>
