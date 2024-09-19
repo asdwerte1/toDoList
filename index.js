@@ -43,7 +43,6 @@ function getTasks() {
         const response = JSON.parse(this.responseText);
 
         makeTaskBanners(response);
-        console.log("HERE");
         checkNumberOfTasks();
     }
 
