@@ -123,9 +123,10 @@ function makeTaskBanners(taskArray) {
 
         col2.style.textAlign = "end";
 
-        if (index + 1 == taskArray.length) {
+        if (index + 1 == taskArray.length) { // Check for last item
             newTask.style.borderBottomLeftRadius = "30px";
             newTask.style.borderBottomRightRadius = "30px";
+            newTask.id == "last";
         }
 
         container.appendChild(newTask);
@@ -139,6 +140,7 @@ function removeTask(id) {
     formData.append("id", taskId);
 
     const task = document.getElementById(taskId);
+    const next_task = task.previousElementSibling;
 
     fetch("markComplete.php", {
         method: "POST",
@@ -156,6 +158,10 @@ function removeTask(id) {
         .catch(error => {
             console.error("Error removing task", error);
         });
+
+    next_task.style.borderBottomLeftRadius = "30px";
+    next_task.style.borderBottomRightRadius = "30px";
+    next_task.id == "last";
 }
 
 // Function to check number of tasks on page --> change form state disabled/not disabled elements if = 10
