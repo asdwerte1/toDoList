@@ -15,9 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
             body: formData
         })
             .then(response => {
+
+                console.log(`Raw Response : ${response}`);
                 if (!response.ok) {
-                    console.log(response.text())
-                    throw new Error('Network response was not ok');
+                    return response.text().then(errorText => {
+                        console.error(`Non-OK Response Body: ${errorText}`);
+                        throw new Error (`Network response was not ok: ${response.statusText}`);
+                    });
                 }
                 return response.text();
             })
