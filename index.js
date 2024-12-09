@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => {
                 if (!response.ok) {
+                    console.log(response.text())
                     throw new Error('Network response was not ok');
                 }
                 return response.text();
