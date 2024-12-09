@@ -34,8 +34,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 getTasks();
             })
             .catch(error => {
-                // Handle error
-                console.error('Error adding task:', error);
+                console.log("Error adding task:", error);
+
+                console.error("ERROR DETAILS: ", {
+                    message: error.message,
+                    stack: error.stack,
+                    name: error.name
+                });
+
+                if (error.response) {
+                    console.error("RESPONSE DETAILS: ", {
+                        status: error.response.status,
+                        statusText: error.response.statusText,
+                        url: error.response.url
+                    });
+                }
+
+                console.log("Form data Submitted: ", Object.fromEntries(formData.entries()));
             });
     });
 });
